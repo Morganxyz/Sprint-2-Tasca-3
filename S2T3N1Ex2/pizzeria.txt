@@ -1,0 +1,214 @@
+db.createCollection('Commanda', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Commanda',
+      required: ['id_Comanda', 'Data', 'Tipus Entrega', 'quantitat', 'productes_id'],
+      properties: {
+        id_Comanda: {
+          bsonType: 'objectId'
+        },
+        Data: {
+          bsonType: 'date'
+        },
+        Tipus Entrega: {
+          enum:
+        },
+        quantitat: {
+          bsonType: 'int'
+        },
+        productes_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_productes', 'Nom', 'Descripció', 'Preu', 'pizza_id', 'Hamburguesa_id', 'Bebida'],
+            properties: {
+              id_productes: {
+                bsonType: 'objectId'
+              },
+              Nom: {
+                bsonType: 'string'
+              },
+              Descripció: {
+                bsonType: 'string'
+              },
+              Imatge: {
+                bsonType: 'string'
+              },
+              Preu: {
+                bsonType: 'decimal'
+              },
+              pizza_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['id_pizza', 'Nom', 'Categoría'],
+                  properties: {
+                    id_pizza: {
+                      bsonType: 'objectId'
+                    },
+                    Nom: {
+                      bsonType: 'string'
+                    },
+                    Categoría: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_categoría', 'Nom'],
+                      properties: {
+                        id_categoría: {
+                          bsonType: 'objectId'
+                        },
+                        Nom: {
+                          bsonType: 'string'
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              Hamburguesa_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['id_Hamburguesa', 'Nom'],
+                  properties: {
+                    id_Hamburguesa: {
+                      bsonType: 'int'
+                    },
+                    Nom: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              },
+              Bebida: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['id_Beguda', 'Nom'],
+                  properties: {
+                    id_Beguda: {
+                      bsonType: 'int'
+                    },
+                    Nom: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        Client_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Client', 'Nom', 'Telèfon', 'Adreça_id'],
+            properties: {
+              id_Client: {
+                bsonType: 'objectId'
+              },
+              Nom: {
+                bsonType: 'string'
+              },
+              Cognom: {
+                bsonType: 'string'
+              },
+              Telèfon: {
+                bsonType: 'string'
+              },
+              Adreça_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['Localidad_id', 'Provincia_id', 'id_Adreça'],
+                  properties: {
+                    Localidad_id: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_Localidad', 'Nom Localitat'],
+                      properties: {
+                        id_Localidad: {
+                          bsonType: 'objectId'
+                        },
+                        Nom Localitat: {
+                          bsonType: 'string'
+                        }
+                      }
+                    },
+                    Provincia_id: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_Provincia', 'Nom Província'],
+                      properties: {
+                        id_Provincia: {
+                          bsonType: 'objectId'
+                        },
+                        Nom Província: {
+                          bsonType: 'string'
+                        }
+                      }
+                    },
+                    id_Adreça: {
+                      bsonType: 'objectId'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        Botiga_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Botiga', 'Adreça_id1'],
+            properties: {
+              id_Botiga: {
+                bsonType: 'objectId'
+              },
+              Adreça_id1: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['Localidad_id', 'Provincia_id', 'id_Adreça'],
+                  properties: {
+                    Localidad_id: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_Localidad', 'Nom Localitat'],
+                      properties: {
+                        id_Localidad: {
+                          bsonType: 'objectId'
+                        },
+                        Nom Localitat: {
+                          bsonType: 'string'
+                        }
+                      }
+                    },
+                    Provincia_id: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_Provincia', 'Nom Província'],
+                      properties: {
+                        id_Provincia: {
+                          bsonType: 'objectId'
+                        },
+                        Nom Província: {
+                          bsonType: 'string'
+                        }
+                      }
+                    },
+                    id_Adreça: {
+                      bsonType: 'objectId'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});

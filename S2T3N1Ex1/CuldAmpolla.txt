@@ -1,0 +1,144 @@
+db.createCollection('Compra/Venta', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Compra/Venta',
+      required: ['id_CompraVenta', 'Ulleres_id', 'DataVenta', 'Venedor_id', 'Cliente'],
+      properties: {
+        id_CompraVenta: {
+          bsonType: 'int'
+        },
+        Ulleres_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Ulleres', 'Graduación', 'Tipo Montura', 'Colo Vidrio', 'Preu'],
+            properties: {
+              id_Ulleres: {
+                bsonType: 'int'
+              },
+              Marca_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['Nom', 'Proveïdor_id', 'Marca_id'],
+                  properties: {
+                    Nom: {
+                      bsonType: 'string'
+                    },
+                    Proveïdor_id: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['Nom', 'Telèfon', 'NIF', 'id_proveïdor'],
+                      properties: {
+                        Nom: {
+                          bsonType: 'string'
+                        },
+                        Adreça: {
+                          bsonType: 'string'
+                        },
+                        Telèfon: {
+                          bsonType: 'string'
+                        },
+                        Fax: {
+                          bsonType: 'string'
+                        },
+                        NIF: {
+                          bsonType: 'string'
+                        },
+                        id_proveïdor: {
+                          bsonType: 'int'
+                        }
+                      }
+                    },
+                    Marca_id: {
+                      bsonType: 'int'
+                    }
+                  }
+                }
+              },
+              Graduación: {
+                bsonType: 'decimal'
+              },
+              Tipo Montura: {
+                enum:
+              },
+              Colo Vidrio: {
+                bsonType: 'string'
+              },
+              Preu: {
+                bsonType: 'decimal'
+              }
+            }
+          }
+        },
+        DataVenta: {
+          bsonType: 'date'
+        },
+        Venedor_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Venedor', 'Nom', 'Cognom', 'DataContracte', 'DNI'],
+            properties: {
+              id_Venedor: {
+                bsonType: 'string'
+              },
+              Nom: {
+                bsonType: 'string'
+              },
+              Cognom: {
+                bsonType: 'string'
+              },
+              DataContracte: {
+                bsonType: 'date'
+              },
+              DNI: {
+                bsonType: 'string'
+              }
+            }
+          }
+        },
+        Cliente: {
+          bsonType: 'int'
+        }
+      }
+    }
+  }
+});
+db.createCollection('Cliente', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Cliente',
+      required: ['id_Cliente', 'Nom', 'Telèfon', 'email', 'DataRegistre', 'RecomenatClient', 'Cliente'],
+      properties: {
+        id_Cliente: {
+          bsonType: 'int'
+        },
+        Nom: {
+          bsonType: 'string'
+        },
+        ZIP: {
+          bsonType: 'string'
+        },
+        Telèfon: {
+          bsonType: 'string'
+        },
+        email: {
+          bsonType: 'string'
+        },
+        DataRegistre: {
+          bsonType: 'date'
+        },
+        RecomenatClient: {
+          bsonType: 'int'
+        },
+        Cliente: {
+          bsonType: 'int'
+        }
+      }
+    }
+  }
+});
+

@@ -1,0 +1,359 @@
+db.createCollection('Usuaris', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Usuaris',
+      required: ['id_Usuaris', 'UsuariPremium_id', 'PlayListsActives', 'PlayListsInactives', 'Favoritos', 'Nom d´Usuari/a', 'Email', 'Zip', 'Usuaris'],
+      properties: {
+        id_Usuaris: {
+          bsonType: 'objectId'
+        },
+        UsuariPremium_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_UsuariPremium'],
+            properties: {
+              id_UsuariPremium: {
+                bsonType: 'objectId'
+              },
+              Suscripcions_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['idSuscripcio targeta', 'Suscripció PayPal', 'Registre Suscripcions', 'Data D´inici', 'Data Renovació', 'Forma de Pagament'],
+                  properties: {
+                    idSuscripcio targeta: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_SusTargeta', 'Número', 'Any', 'Mes', 'Código', 'Nom Usuari'],
+                      properties: {
+                        id_SusTargeta: {
+                          bsonType: 'objectId'
+                        },
+                        Número: {
+                          bsonType: 'int'
+                        },
+                        Any: {
+                          bsonType: 'int'
+                        },
+                        Mes: {
+                          bsonType: 'int'
+                        },
+                        Código: {
+                          bsonType: 'int'
+                        },
+                        Nom Usuari: {
+                          bsonType: 'string'
+                        }
+                      }
+                    },
+                    Suscripció PayPal: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_SuscripcioPayPal', 'Nom Usuari'],
+                      properties: {
+                        id_SuscripcioPayPal: {
+                          bsonType: 'objectId'
+                        },
+                        Nom Usuari: {
+                          bsonType: 'string'
+                        }
+                      }
+                    },
+                    Registre Suscripcions: {
+                      bsonType: 'object',
+                      title: 'object',
+                      required: ['id_RegistreSuscripcions', 'Data', 'Número d´ordre', 'Total'],
+                      properties: {
+                        id_RegistreSuscripcions: {
+                          bsonType: 'objectId'
+                        },
+                        Data: {
+                          bsonType: 'date'
+                        },
+                        Número d´ ordre: {
+                          bsonType: 'string'
+                        },
+                        Total: {
+                          bsonType: 'decimal'
+                        }
+                      }
+                    },
+                    Data D´ inici: {
+                      bsonType: 'date'
+                    },
+                    Data Renovació: {
+                      bsonType: 'date'
+                    },
+                    Forma de Pagament: {
+                      enum:
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        PlayListsActives: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_PlayListsActives', 'Artistes_id', 'Títol Playlist', 'Nombre de cançons', 'Data'],
+            properties: {
+              id_PlayListsActives: {
+                bsonType: 'array',
+                items: {
+                  bsonType: 'objectId'
+                }
+              },
+              Artistes_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['id_Artistes', 'Albums_id', 'Nom', 'Imatge'],
+                  properties: {
+                    id_Artistes: {
+                      bsonType: 'objectId'
+                    },
+                    Albums_id: {
+                      bsonType: 'array',
+                      items: {
+                        title: 'object',
+                        required: ['id_Albums', 'Cançons_id'],
+                        properties: {
+                          id_Albums: {
+                            bsonType: 'objectId'
+                          },
+                          Cançons_id: {
+                            bsonType: 'array',
+                            items: {
+                              title: 'object',
+                              required: ['id_Cançons', 'Títol', 'Durada', 'Nombre de reproduccions'],
+                              properties: {
+                                id_Cançons: {
+                                  bsonType: 'array',
+                                  items: {
+                                    bsonType: 'objectId'
+                                  }
+                                },
+                                Títol: {
+                                  bsonType: 'string'
+                                },
+                                Durada: {
+                                  bsonType: 'decimal'
+                                },
+                                Nombre de reproduccions: {
+                                  bsonType: 'int'
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    Nom: {
+                      bsonType: 'string'
+                    },
+                    Imatge: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              },
+              Títol Playlist: {
+                bsonType: 'string'
+              },
+              Nombre de cançons: {
+                bsonType: 'int'
+              },
+              Data: {
+                bsonType: 'date'
+              }
+            }
+          }
+        },
+        PlayListsInactives: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_PlayListsInactives', 'Artistes_id', 'Titol PlayList', 'Nombre de cançons', 'Data Creació', 'Data Eliminació'],
+            properties: {
+              id_PlayListsInactives: {
+                bsonType: 'array',
+                items: {
+                  bsonType: 'objectId'
+                }
+              },
+              Artistes_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['id_Artistes', 'Albums_id', 'Nom', 'Imatge'],
+                  properties: {
+                    id_Artistes: {
+                      bsonType: 'objectId'
+                    },
+                    Albums_id: {
+                      bsonType: 'array',
+                      items: {
+                        title: 'object',
+                        required: ['id_Albums', 'Cançons_id', 'Títol', 'Any', 'Imatge'],
+                        properties: {
+                          id_Albums: {
+                            bsonType: 'objectId'
+                          },
+                          Cançons_id: {
+                            bsonType: 'array',
+                            items: {
+                              title: 'object',
+                              required: ['id_Cançons', 'Títol', 'Durada', 'Nombre de Reproduccions'],
+                              properties: {
+                                id_Cançons: {
+                                  bsonType: 'array',
+                                  items: {
+                                    bsonType: 'objectId'
+                                  }
+                                },
+                                Títol: {
+                                  bsonType: 'string'
+                                },
+                                Durada: {
+                                  bsonType: 'decimal'
+                                },
+                                Nombre de Reproduccions: {
+                                  bsonType: 'int'
+                                }
+                              }
+                            }
+                          },
+                          Títol: {
+                            bsonType: 'string'
+                          },
+                          Any: {
+                            bsonType: 'int'
+                          },
+                          Imatge: {
+                            bsonType: 'string'
+                          }
+                        }
+                      }
+                    },
+                    Nom: {
+                      bsonType: 'string'
+                    },
+                    Imatge: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              },
+              Titol PlayList: {
+                bsonType: 'string'
+              },
+              Nombre de cançons: {
+                bsonType: 'int'
+              },
+              Data Creació: {
+                bsonType: 'date'
+              },
+              Data Eliminació: {
+                bsonType: 'date'
+              }
+            }
+          }
+        },
+        Favoritos: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Favoritos', 'Artistes_id'],
+            properties: {
+              id_Favoritos: {
+                bsonType: 'array',
+                items: {
+                  bsonType: 'objectId'
+                }
+              },
+              Artistes_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['id_Artistes', 'Albums_id', 'Nom', 'Imatge'],
+                  properties: {
+                    id_Artistes: {
+                      bsonType: 'objectId'
+                    },
+                    Albums_id: {
+                      bsonType: 'array',
+                      items: {
+                        title: 'object',
+                        required: ['id_Albums', 'Cançons_id', 'Títol', 'Any', 'Imatge'],
+                        properties: {
+                          id_Albums: {
+                            bsonType: 'objectId'
+                          },
+                          Cançons_id: {
+                            bsonType: 'array',
+                            items: {
+                              title: 'object',
+                              required: ['id_Cançons'],
+                              properties: {
+                                id_Cançons: {
+                                  bsonType: 'array',
+                                  items: {
+                                    bsonType: 'objectId'
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          Títol: {
+                            bsonType: 'string'
+                          },
+                          Any: {
+                            bsonType: 'int'
+                          },
+                          Imatge: {
+                            bsonType: 'string'
+                          }
+                        }
+                      }
+                    },
+                    Nom: {
+                      bsonType: 'string'
+                    },
+                    Imatge: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        Nom d´ Usuari / a: {
+          bsonType: 'string'
+        },
+        Email: {
+          bsonType: 'string'
+        },
+        Data Neixement: {
+          bsonType: 'date'
+        },
+        Sexe: {
+          enum:
+        },
+        País: {
+          bsonType: 'string'
+        },
+        Zip: {
+          bsonType: 'string'
+        },
+        Usuaris: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});

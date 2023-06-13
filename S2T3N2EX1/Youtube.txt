@@ -1,0 +1,194 @@
+db.createCollection('PlayList', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'PlayList',
+      required: ['id_PlayList', 'Nom', 'Data', 'Estat', 'Video_id', 'Usuaris/as'],
+      properties: {
+        id_PlayList: {
+          bsonType: 'objectId'
+        },
+        Nom: {
+          bsonType: 'string'
+        },
+        Data: {
+          bsonType: 'date'
+        },
+        Estat: {
+          enum:
+        },
+        Video_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Video', 'Títol', 'Descripció', 'Grandària', 'Nom de l´arxiu', 'Durada', 'Thumbnail', 'Nombre de reproduccions', 'nombre de likes', 'Nombre de dislikes', 'Estat Vídeo', 'Etiquetes_id', 'Data Penjat', 'Registre Likes/Dislikes_id'],
+            properties: {
+              id_Video: {
+                bsonType: 'objectId'
+              },
+              Títol: {
+                bsonType: 'string'
+              },
+              Descripció: {
+                bsonType: 'string'
+              },
+              Grandària: {
+                bsonType: 'decimal'
+              },
+              Nom de l´ arxiu: {
+                bsonType: 'string'
+              },
+              Durada: {
+                bsonType: 'decimal'
+              },
+              Thumbnail: {
+                bsonType: 'string'
+              },
+              Nombre de reproduccions: {
+                bsonType: 'int'
+              },
+              nombre de likes: {
+                bsonType: 'int'
+              },
+              Nombre de dislikes: {
+                bsonType: 'int'
+              },
+              Estat Vídeo: {
+                enum:
+              },
+              Etiquetes_id: {
+                bsonType: 'array',
+                items: {
+                  title: 'object',
+                  required: ['Etiquetes_id', 'Nom Etiqueta'],
+                  properties: {
+                    Etiquetes_id: {
+                      bsonType: 'objectId'
+                    },
+                    Nom Etiqueta: {
+                      bsonType: 'string'
+                    }
+                  }
+                }
+              },
+              Data Penjat: {
+                bsonType: 'date'
+              },
+              Registre Likes / Dislikes_id: {
+                bsonType: 'object',
+                title: 'object',
+                required: ['id_Registre Likes/Dislikes'],
+                properties: {
+                  id_Registre Likes / Dislikes: {
+                    bsonType: 'objectId'
+                  }
+                }
+              }
+            }
+          }
+        },
+        Usuaris / as: {
+          bsonType: 'objectId'
+        }
+      }
+    }
+  }
+});
+db.createCollection('Usuaris/as', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      title: 'Usuaris/as',
+      required: ['Id_Usuari', 'Nom', 'Email', 'Password', 'Zip', 'Canal_id', 'Comentaris_id'],
+      properties: {
+        Id_Usuari: {
+          bsonType: 'objectId'
+        },
+        Nom: {
+          bsonType: 'string'
+        },
+        Email: {
+          bsonType: 'string'
+        },
+        Password: {
+          bsonType: 'string'
+        },
+        Data Neixement: {
+          bsonType: 'date'
+        },
+        SEX: {
+          bsonType: 'date'
+        },
+        Sexe: {
+          enum:
+        },
+        País: {
+          bsonType: 'string'
+        },
+        Zip: {
+          bsonType: 'string'
+        },
+        Canal_id: {
+          bsonType: 'object',
+          title: 'object',
+          required: ['id_Canal', 'Nom', 'Descripció', 'Data', 'Suscripcions_id'],
+          properties: {
+            id_Canal: {
+              bsonType: 'objectId'
+            },
+            Nom: {
+              bsonType: 'string'
+            },
+            Descripció: {
+              bsonType: 'string'
+            },
+            Data: {
+              bsonType: 'date'
+            },
+            Suscripcions_id: {
+              bsonType: 'object',
+              title: 'object',
+              required: ['id_Suscripcions'],
+              properties: {
+                id_Suscripcions: {
+                  bsonType: 'objectId'
+                }
+              }
+            }
+          }
+        },
+        Comentaris_id: {
+          bsonType: 'array',
+          items: {
+            title: 'object',
+            required: ['id_Comentaris', 'Tipus Comentari', 'Text', 'Data', 'Registre Likes/Dislikes_id'],
+            properties: {
+              id_Comentaris: {
+                bsonType: 'objectId'
+              },
+              Tipus Comentari: {
+                enum:
+              },
+              Text: {
+                bsonType: 'string'
+              },
+              Data: {
+                bsonType: 'date'
+              },
+              Registre Likes / Dislikes_id: {
+                bsonType: 'object',
+                title: 'object',
+                required: ['id_Registre Likes/Dislikes'],
+                properties: {
+                  id_Registre Likes / Dislikes: {
+                    bsonType: 'objectId'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+});
